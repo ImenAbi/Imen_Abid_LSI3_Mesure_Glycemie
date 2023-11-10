@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Imen_Abid_LSI3_Mesure_Glycemie</string>
+    <string name="title">Mesure de niveau de glycémie</string>
+    <string name="age">Votre age :</string>
+    <string name="question">Est-ce que vous jeunez ?</string>
+    <string name="ValM">Valeur mesurée</string>
+    <string name="Consulter">Consulter</string>
+</resources>
