@@ -14,16 +14,15 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/playfair_display"
+        android:fontFamily="@font/playfair_display_italic"
         android:gravity="center"
         android:padding="30dp"
         android:text="@string/title"
-        android:textColor="@color/black"
+        android:textColor="@color/red"
         android:textSize="25sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="20dp"
-        /> <!--C'est un élément TextView qui affiche un titre. Il utilise une police de caractères spécifique, est centré, a un rembourrage, une taille de texte, une couleur de texte et un style spécifiques.-->
+        tools:layout_editor_absoluteY="20dp" /> <!--C'est un élément TextView qui affiche un titre. Il utilise une police de caractères spécifique, est centré, a un rembourrage, une taille de texte, une couleur de texte et un style spécifiques.-->
      <!-- Cet élément TextView affiche l'étiquette "Âge". -->
     <TextView
         android:layout_width="match_parent"

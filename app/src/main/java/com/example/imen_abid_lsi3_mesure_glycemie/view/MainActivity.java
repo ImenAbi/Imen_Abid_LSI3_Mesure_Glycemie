@@ -15,15 +15,20 @@ import android.widget.TextView;
 import android.widget.Toast;//
 
 import com.example.imen_abid_lsi3_mesure_glycemie.R;
-
+import com.example.imen_abid_lsi3_mesure_glycemie.controller.Controller;
 public class MainActivity extends AppCompatActivity {
 //La classe MainActivity étend AppCompatActivity, ce qui signifie qu'elle est une activité Android.
+    //mainActivity hattayneha fy view khater fiha al'interface
     private TextView tvage, TvRes;//elly mawjoud fy id ta3 Age
     private SeekBar sbAge;
     private RadioButton rbtOui, rbtNon;
     private EditText ValMes;
     private Button btnConsulter;
+
+    private Controller controller = Controller.getInstance();//
+
     //Ces lignes déclarent des variables pour les éléments d'interface utilisateur, qui seront référencés dans le code.
+
 
     @Override
     // La méthode onCreate est appelée lorsque l'activité est créée
@@ -33,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         //R : c'est une clss finale cst ,contient des sous classe
         //layout : clss finale contient les identifients de touts les interfaces  de l'app
         init();
-        // action sur le seekbar:
+        // action sur le seekbar:(listener)
         sbAge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
 
         /*La méthode onCreate est exécutée lorsque l'activité est créée.
@@ -72,22 +77,28 @@ public class MainActivity extends AppCompatActivity {
         float valMesu;
         boolean verifAge = false, verifValeur = false;
 
-        if(sbAge.getProgress() != 0)
+        if (sbAge.getProgress() != 0)
             verifAge = true;
         else
             Toast.makeText(MainActivity.this, "Veuillez saisir votre âge !", Toast.LENGTH_SHORT).show();
-           //affichage immédiate
-        if(!ValMes.getText().toString().isEmpty())
+        //affichage immédiate
+        if (!ValMes.getText().toString().isEmpty())
             verifValeur = true;
         else
             Toast.makeText(MainActivity.this, "Veuillez saisir une valeur mesurée valide !", Toast.LENGTH_LONG);
-            //affichage de toast apres 1seconde
-        if(verifAge && verifValeur) {
+        //affichage de toast apres 1seconde
+        if (verifAge && verifValeur) {
             age = sbAge.getProgress();
             valMesu = Float.valueOf(ValMes.getText().toString());
+            boolean IsFasting = rbtOui.isChecked();
+            //useraction:view to controller
+            controller.createPatient(age, valMesu, IsFasting);
+            //update cntroller to view
+            TvRes.setText(controller.getResult());
 
+/*
             if(rbtOui.isChecked()) {    // il est a jeun
-                if(age >= 13) {
+                if(age >= 13) {   //nrmlment men hnee bdina nhezzou ll patient
                     if (valMesu < 5.0)
                         TvRes.setText("Le niveau de glycèmie est bas !");
                     else if (valMesu >= 5.0 && valMesu <= 7.2)
@@ -119,13 +130,14 @@ public class MainActivity extends AppCompatActivity {
                 TvRes.setText("Le niveau de glycèmie est normal !");
             else
                 TvRes.setText("Le niveau de glycèmie est élevé !");
+        }*/
         }
-    }
 
     /*La méthode init() initialise les variables en associant les éléments d'interface utilisateur définis
     dans le fichier de mise en page XML aux variables déclarées dans le code.
      */
-    private void init() {
+    }
+    public void init() {
         tvage = (TextView) findViewById(R.id.tvage);//type de retour hiya class heka alesh 3malna cast
         sbAge = (SeekBar) findViewById(R.id.sbAge);
         rbtOui = (RadioButton) findViewById(R.id.rbtOui);
