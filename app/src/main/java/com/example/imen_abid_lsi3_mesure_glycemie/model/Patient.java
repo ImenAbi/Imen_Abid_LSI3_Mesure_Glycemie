@@ -19,6 +19,7 @@ public class Patient {
 
         calculer();// Appelle la méthode de calcul pour déterminer le résultat
     }
+    //getters:
     public int getAge() {
         return age;
     }// hedhyy**

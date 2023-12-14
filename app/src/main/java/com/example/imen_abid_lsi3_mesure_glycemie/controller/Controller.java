@@ -1,6 +1,7 @@
 package com.example.imen_abid_lsi3_mesure_glycemie.controller;
 
 import com.example.imen_abid_lsi3_mesure_glycemie.model.Patient;
+import com.example.imen_abid_lsi3_mesure_glycemie.model.User;
 
 //hedheya ya3ty les donnees ll patient (model) w yheb yekhou notify (resultat)
 public class Controller {
@@ -41,6 +42,7 @@ public class Controller {
     // khater ma najamsh nkhally l'model w l'view yahkiw m3a b3adh'hom
     //leklem hedha bi'java ywally: l'view me tnajamesh ta3mel instance 3al patient
     // w l'patient me ynajamesh ya3mel instance 3al model
+
 
 }
 

@@ -107,16 +107,6 @@
         android:onClick="calculer"
         />
 
-    <TextView
-        android:id="@+id/TvRes"
-        android:layout_width="wrap_content"
-        android:layout_height="43dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:text=""
-        android:textSize="25sp"
-        android:textColor="@color/blue"
-        />
 
 
 </LinearLayout>

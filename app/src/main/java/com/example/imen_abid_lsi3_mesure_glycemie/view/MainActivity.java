@@ -2,8 +2,10 @@ package com.example.imen_abid_lsi3_mesure_glycemie.view;
 //Ce sont les différentes importations de classes nécessaires pour le code.
 //Par exemple, AppCompatActivity est hérité pour créer une activité Android,
 //et d'autres classes sont importées pour utiliser des widgets graphiques et des fonctionnalités Android
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,13 +21,14 @@ import com.example.imen_abid_lsi3_mesure_glycemie.controller.Controller;
 public class MainActivity extends AppCompatActivity {
 //La classe MainActivity étend AppCompatActivity, ce qui signifie qu'elle est une activité Android.
     //mainActivity hattayneha fy view khater fiha al'interface
-    private TextView tvage, TvRes;//elly mawjoud fy id ta3 Age
+    private final int REQUEST_CODE =1;//c'est un entier fih val khassa bi consult activity
+    private TextView tvage; // TvRes;//elly mawjoud fy id ta3 Age
     private SeekBar sbAge;
     private RadioButton rbtOui, rbtNon;
     private EditText ValMes;
     private Button btnConsulter;
 
-    private Controller controller = Controller.getInstance();//
+    private Controller controller = Controller.getInstance();//l'instance unique et accessible du controlleur
 
     //Ces lignes déclarent des variables pour les éléments d'interface utilisateur, qui seront référencés dans le code.
 
@@ -60,10 +63,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });//elly wost set lkollou implementation ta3 les methodes
 
+        //listener de button consult explicite
         btnConsulter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 consulter(v);
+
             }
         });
     }
@@ -94,7 +100,18 @@ public class MainActivity extends AppCompatActivity {
             //useraction:view to controller
             controller.createPatient(age, valMesu, IsFasting);
             //update cntroller to view
-            TvRes.setText(controller.getResult());
+            //TvRes.setText(controller.getResult()); nahineh
+
+
+            //fléche "User action" Vue-->Controller:
+            Intent  intent = new Intent(MainActivity.this, ConsultActivity.class);
+            intent.putExtra("reponse",controller.getResult());
+        //controller .getresult jebneha men main activity nahineha men ghady w hattineha houny
+            startActivityForResult(intent,REQUEST_CODE);
+
+
+
+            //hedheya lkool 7awalneh
 
 /*
             if(rbtOui.isChecked()) {    // il est a jeun
@@ -137,6 +154,17 @@ public class MainActivity extends AppCompatActivity {
     dans le fichier de mise en page XML aux variables déclarées dans le code.
      */
     }
+    //hedhy zedneha
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==REQUEST_CODE)
+            if(resultCode==RESULT_CANCELED)
+                Toast.makeText(MainActivity.this,"System Erreur",Toast.LENGTH_SHORT).show();
+
+
+    }
+
     public void init() {
         tvage = (TextView) findViewById(R.id.tvage);//type de retour hiya class heka alesh 3malna cast
         sbAge = (SeekBar) findViewById(R.id.sbAge);
@@ -144,6 +172,10 @@ public class MainActivity extends AppCompatActivity {
         rbtNon = (RadioButton) findViewById(R.id.rbtNon);
         ValMes = (EditText) findViewById(R.id.ValMes);
         btnConsulter = (Button) findViewById(R.id.btnConsulter);
-        TvRes = (TextView) findViewById(R.id.TvRes);
+        controller =Controller.getInstance();
+        //TvRes = (TextView) findViewById(R.id.TvRes);
     }
+
+
+
 }
