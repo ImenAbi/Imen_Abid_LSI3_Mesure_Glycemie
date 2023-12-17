@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    // scenario : wakt neckliki ale consulter fy mainActivity besh nemshy ll consult activity
 
     public void consulter(View v) { // Logique pour effectuer la consultation en fonction des valeurs des éléments d'interface utilisateur.
       /*  La méthode consulter est appelée lorsque le bouton "Consulter" est cliqué.
@@ -102,12 +103,17 @@ public class MainActivity extends AppCompatActivity {
             //update cntroller to view
             //TvRes.setText(controller.getResult()); nahineh
 
+            // intent hedhy besh temshy men context mainActivity ll  la classe consultActivity
+            //l'intent hedhy hiya ely besh twassal ll systeme shniya l'@ de deppart et shniya l'@ d'arrive
+            // wela besh tawsal ll syt l'URL ely besh ykhalih yab3ath intent explicite wela implecite
 
+            //c'est une intent explicite ( car and'ha la classe elly meshilha )
             //fléche "User action" Vue-->Controller:
             Intent  intent = new Intent(MainActivity.this, ConsultActivity.class);
             intent.putExtra("reponse",controller.getResult());
         //controller .getresult jebneha men main activity nahineha men ghady w hattineha houny
-            startActivityForResult(intent,REQUEST_CODE);
+            //houny besh nab3ath l'intent
+            startActivityForResult(intent,REQUEST_CODE);//hedhy na3tiha request code w traja3ly result
 
 
 
@@ -155,11 +161,12 @@ public class MainActivity extends AppCompatActivity {
      */
     }
     //hedhy zedneha
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==REQUEST_CODE)
-            if(resultCode==RESULT_CANCELED)
+        if(requestCode==REQUEST_CODE) //ken dkhal houny ya3ny ray consult activity jawbetny
+            if(resultCode==RESULT_CANCELED)//besh nshouf resultCode ely jetny canceled wela
                 Toast.makeText(MainActivity.this,"System Erreur",Toast.LENGTH_SHORT).show();
 
 

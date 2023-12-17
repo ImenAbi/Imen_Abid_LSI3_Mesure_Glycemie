@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.imen_abid_lsi3_mesure_glycemie.R;
 
 public class ConsultActivity extends AppCompatActivity {
+    //role de cette activity est just d'afficher le resultat de l'analyse de niveau de clycemie
     private TextView tvReponse;
     private Button btnReturn;
 
@@ -21,15 +22,23 @@ public class ConsultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_consult);
         init();
 
+
         Intent intent = getIntent();//getIntent existe par defaut on compatActivity
                                    // elle retourne l'intent qui a lance l'activite courante
                                   //de type intent
         //la retour de getIntent est une instance de la classe Intent
         String reponse =intent.getStringExtra("reponse");
-        tvReponse.setText(reponse);
+        tvReponse.setText(reponse);//hattina reponse fi textView
+
+        //lahthet elly besh yasna3 l'interface besh ichargi l'intent yara shnouwa extra elly t'hat fiha w yekhou extrat elly esmou
+        // repnse w ihotou fi tvReponse w yafishily l'interface
+
+        //3malna listener besh kif yenzel al button retour yarja3 ll mainActivity:
         btnReturn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                Intent intent = new Intent();
+                //hedhy intent traja3ny ll'mainActivity
+                Intent intent = new Intent();//systeme 9a3ed yestana fi heka retour car " stratActivityForResult"
+                // donc hedhy intent implicite
                 if (reponse !=null)
                     setResult(RESULT_OK);
                 else
@@ -39,9 +48,10 @@ public class ConsultActivity extends AppCompatActivity {
 
 
     }
-    private void init (){{
+    private void init (){
         tvReponse=( TextView)findViewById(R.id.tvReponse);
         btnReturn=(Button) findViewById(R.id.btnReturn);
+
     }
-    }
+
 }

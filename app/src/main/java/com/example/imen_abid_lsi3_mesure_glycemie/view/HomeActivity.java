@@ -56,19 +56,17 @@ public class HomeActivity extends AppCompatActivity {
                     startActivity (intent);
                     finish();
 
+
                 }
-
-
-
-
 
             }
         });
 
+
         }
         private void init(){
              //kif 3ayyat ll getInstance ta3 la creation de loginController yezemny na3tiha le contexte de travail besh twaslou ll recapUser
-            // Ellymeshya besh t3adih wela t'aceedi bih ll sharedPreference
+            // Elly meshya besh t3adih wela t'aceedi bih ll sharedPreference
             // ya3ny context dar men and hommeActivity -->controller-->recapUser-->sharedPrederences.getSharedPrefs
             loginController = LoginController.getInstance(HomeActivity.this);
             btnConsulter=(Button) findViewById(R.id.btnConsultation);
@@ -77,3 +75,17 @@ public class HomeActivity extends AppCompatActivity {
         }
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
